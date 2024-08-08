@@ -5,6 +5,10 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkCellar.Api", "DrinkCellar.Api\DrinkCellar.Api.csproj", "{18366BFC-17F4-4C62-A2AE-497B635D6949}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkCellar.Core", "DrinkCellar.Core\DrinkCellar.Core.csproj", "{5DFB4DAA-3F30-4570-866F-8041B9270317}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkCellar.Infrastructure", "DrinkCellar.Infrastructure\DrinkCellar.Infrastructure.csproj", "{991FE8B9-C595-45C0-9FA3-A6DEB2016B5B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{18366BFC-17F4-4C62-A2AE-497B635D6949}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18366BFC-17F4-4C62-A2AE-497B635D6949}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18366BFC-17F4-4C62-A2AE-497B635D6949}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DFB4DAA-3F30-4570-866F-8041B9270317}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DFB4DAA-3F30-4570-866F-8041B9270317}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DFB4DAA-3F30-4570-866F-8041B9270317}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DFB4DAA-3F30-4570-866F-8041B9270317}.Release|Any CPU.Build.0 = Release|Any CPU
+		{991FE8B9-C595-45C0-9FA3-A6DEB2016B5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{991FE8B9-C595-45C0-9FA3-A6DEB2016B5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{991FE8B9-C595-45C0-9FA3-A6DEB2016B5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{991FE8B9-C595-45C0-9FA3-A6DEB2016B5B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
