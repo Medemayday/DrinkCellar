@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/DrinkCellar.Core/obj/Debug/net8.0/DrinkCellar.Core.AssemblyInfo.cs
+/DrinkCellar.Core/obj/Debug/net8.0/DrinkCellar.Core.AssemblyInfoInputs.cache
