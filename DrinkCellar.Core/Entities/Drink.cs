@@ -5,6 +5,7 @@
         public Guid DrinkTypeId { get; set; }
         public DrinkType DrinkType { get; set; }
         public Guid CellarId { get; set; }
-        public Cellar cellar { get; set; } 
+        public Cellar Cellar { get; set; } 
+        public string Note { get; set; }
     }
 }

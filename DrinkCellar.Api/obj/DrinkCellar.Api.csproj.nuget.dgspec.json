@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Prog\\Persoonlijk\\DrinkCellar\\DrinkCellar.Api\\DrinkCellar.Api.csproj": {}
+    "C:\\Prog\\Persoonlijk\\DrinkCellar\\drinkcellar.api\\DrinkCellar.Api.csproj": {}
   },
   "projects": {
-    "C:\\Prog\\Persoonlijk\\DrinkCellar\\DrinkCellar.Api\\DrinkCellar.Api.csproj": {
+    "C:\\Prog\\Persoonlijk\\DrinkCellar\\drinkcellar.api\\DrinkCellar.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Prog\\Persoonlijk\\DrinkCellar\\DrinkCellar.Api\\DrinkCellar.Api.csproj",
+        "projectUniqueName": "C:\\Prog\\Persoonlijk\\DrinkCellar\\drinkcellar.api\\DrinkCellar.Api.csproj",
         "projectName": "DrinkCellar.Api",
-        "projectPath": "C:\\Prog\\Persoonlijk\\DrinkCellar\\DrinkCellar.Api\\DrinkCellar.Api.csproj",
+        "projectPath": "C:\\Prog\\Persoonlijk\\DrinkCellar\\drinkcellar.api\\DrinkCellar.Api.csproj",
         "packagesPath": "C:\\Users\\matth\\.nuget\\packages\\",
-        "outputPath": "C:\\Prog\\Persoonlijk\\DrinkCellar\\DrinkCellar.Api\\obj\\",
+        "outputPath": "C:\\Prog\\Persoonlijk\\DrinkCellar\\drinkcellar.api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

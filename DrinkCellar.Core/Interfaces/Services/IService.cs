@@ -9,7 +9,6 @@ namespace DrinkCellar.Core.Interfaces.Services
 
         Task<ItemResultModel<T>> GetByIdAsync(Guid id);
 
-
         Task<ItemResultModel<T>> DeleteAsync(Guid id);
 
         Task<ItemResultModel<T>> SearchByNameAsync(string name);
