@@ -3,7 +3,7 @@ using DrinkCellar.Core.Services.Models;
 
 namespace DrinkCellar.Core.Interfaces.Services
 {
-    public interface IDrinkTypeService
+    public interface IDrinkTypeService: IService<DrinkType>
     {
         Task<ItemResultModel<DrinkType>> AddAsync(string name);
 
