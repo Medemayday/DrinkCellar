@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DrinkCellar.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+57a996a0df191c001f91364cdb687e97d04a7e0c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+04177eee49b83c8a48165fb74d20463abb7a2aec")]
 [assembly: System.Reflection.AssemblyProductAttribute("DrinkCellar.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DrinkCellar.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

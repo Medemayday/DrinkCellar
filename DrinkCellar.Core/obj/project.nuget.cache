@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "C2Pyfx8eW/wEjWHWmXHaDQ2Fs70Q5RBBuYDK7FDV8OUi57TCrQhZln2h1N0dEDibEJeEoFI4YT7yMWcyIgXUeQ==",
+  "dgSpecHash": "NxiC7JK/duwT3DQPsXvIXeZefNf3A5mC7zb2A9DDuVXzCJLgZpLvqIiCo/Tw6u4IQtkqPq0b4W/0Cxa5NMg7uA==",
   "success": true,
   "projectFilePath": "C:\\Prog\\Persoonlijk\\DrinkCellar\\DrinkCellar.Core\\DrinkCellar.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\matth\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\matth\\.nuget\\packages\\azure.identity\\1.11.3\\azure.identity.1.11.3.nupkg.sha512",
     "C:\\Users\\matth\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\matth\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
     "C:\\Users\\matth\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
     "C:\\Users\\matth\\.nuget\\packages\\microsoft.build.framework\\16.10.0\\microsoft.build.framework.16.10.0.nupkg.sha512",
     "C:\\Users\\matth\\.nuget\\packages\\microsoft.build.locator\\1.5.5\\microsoft.build.locator.1.5.5.nupkg.sha512",
