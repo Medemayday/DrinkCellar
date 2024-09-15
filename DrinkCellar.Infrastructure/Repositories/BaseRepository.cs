@@ -41,9 +41,12 @@ namespace DrinkCellar.Infrastructure.Repositories
                 .FirstOrDefaultAsync(b => b.Id == id);
         }
 
-        public abstract Task<IEnumerable<T>> SearchByNameAsync(string name);
-
-        
+        public virtual async Task<T> SearchByNameAsync(string name)
+        {
+            return await _table
+                .FirstOrDefaultAsync(b => b.Name == name);
+        }
+                
         private async Task<bool> Save()
         {
             try
