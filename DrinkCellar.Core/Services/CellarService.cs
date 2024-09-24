@@ -75,6 +75,16 @@ namespace DrinkCellar.Core.Services
                         }
                     };
                 }
+                if (cellar.Drinks.Any())
+                {
+                    return new ItemResultModel<Cellar>
+                    {
+                        ValidationErrors = new List<ValidationResult>
+                        {
+                            new ValidationResult("This cellar isn't empty")
+                        }
+                    };
+                }
 
                 if (!await _cellarRepository.DeleteAsync(cellar.Id))
                 {
@@ -129,17 +139,75 @@ namespace DrinkCellar.Core.Services
             }
         }
 
-        public Task<ItemResultModel<Cellar>> GetByIdAsync(Guid id)
+        public async Task<ItemResultModel<Cellar>> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+
+            try
+            {
+                var cellarModel = new ItemResultModel<Cellar>();
+                var cellar = await _cellarRepository.GetByIdAsync(id);
+
+                if (cellar == null)
+                {
+                    cellarModel.ValidationErrors = new List<ValidationResult>
+                    {
+                        new ValidationResult("This cellar was not found in the database")
+                    };
+
+                    return cellarModel;
+                }
+
+                cellarModel.IsSucces = true;
+                cellarModel.Items = new List<Cellar> { cellar };
+                return cellarModel;
+            }
+            catch (Exception ex)
+            {
+                return new ItemResultModel<Cellar>
+                {
+                    ValidationErrors = new List<ValidationResult>
+                    {
+                        new ValidationResult(ex.Message)
+                    }
+                };
+            }
         }
 
-        public Task<ItemResultModel<Cellar>> SearchByNameAsync(string name)
+        public async Task<ItemResultModel<Cellar>> SearchByNameAsync(string name)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var cellarModel = new ItemResultModel<Cellar>();
+                var cellar = await _cellarRepository.SearchByNameAsync(name);
+
+                if (cellar == null)
+                {
+                    cellarModel.IsSucces = false;
+                    cellarModel.ValidationErrors = new List<ValidationResult>
+                    {
+                        new ValidationResult("This cellar was not found in the database")
+                    };
+
+                    return cellarModel;
+                }
+
+                cellarModel.IsSucces = true;
+                cellarModel.Items = new List<Cellar> { cellar };
+                return cellarModel;
+            }
+            catch (Exception ex)
+            {
+                return new ItemResultModel<Cellar>
+                {
+                    ValidationErrors = new List<ValidationResult>
+                    {
+                        new ValidationResult(ex.Message)
+                    }
+                };
+            }                    
         }
 
-        public Task<ItemResultModel<Cellar>> UpdateAsync(Guid id, string name, int maxCapacity, bool cooled, List<Drink> drinks)
+        public async Task<ItemResultModel<Cellar>> UpdateAsync(Guid id, string name, int maxCapacity, bool cooled, List<Drink> drinks)
         {
             throw new NotImplementedException();
         }
