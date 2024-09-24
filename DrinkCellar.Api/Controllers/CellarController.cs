@@ -8,5 +8,9 @@ namespace DrinkCellar.Api.Controllers
     public class CellarController(ICellarService cellarService) : ControllerBase
     {
         private readonly ICellarService _cellarService = cellarService;
+
+
+
+
     }
 }
