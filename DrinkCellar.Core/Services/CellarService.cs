@@ -187,7 +187,6 @@ namespace DrinkCellar.Core.Services
                     {
                         new ValidationResult("This cellar was not found in the database")
                     };
-
                     return cellarModel;
                 }
 
@@ -207,9 +206,63 @@ namespace DrinkCellar.Core.Services
             }                    
         }
 
-        public async Task<ItemResultModel<Cellar>> UpdateAsync(Guid id, string name, int maxCapacity, bool cooled, List<Drink> drinks)
+        public async Task<ItemResultModel<Cellar>> UpdateAsync(Guid id, string name, int maxCapacity, bool cooled)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var cellarModel = new ItemResultModel<Cellar>();
+                var cellar = await _cellarRepository.GetByIdAsync(id);
+                var cellars = await _cellarRepository.GetAllAsync();
+                if (cellar == null)
+                {
+                    cellarModel.IsSucces = false;
+                    cellarModel.ValidationErrors = new List<ValidationResult>
+                    {
+                        new ValidationResult("This cellar was not found in the database")
+                    };
+                    return cellarModel;
+                }
+                
+                if (cellars.Any(x => x.Name == name))
+                {
+                    return new ItemResultModel<Cellar>
+                    {
+                        ValidationErrors = new List<ValidationResult>
+                        {
+                       new ValidationResult("You already have a cellar with that name. The new name must be unique")
+                        }
+                    };
+                }
+
+                cellar.Name = name;
+                cellar.MaxCapacity = maxCapacity;
+                cellar.Cooled = cooled;
+
+                if (!await _cellarRepository.UpdateAsync(cellar))
+                {
+                    return new ItemResultModel<Cellar>
+                    {
+                        ValidationErrors = new List<ValidationResult>
+                        {
+                            new ValidationResult("Something went wrong in the system")
+                        }
+                    };
+                }
+
+                cellarModel.IsSucces = true;
+                cellarModel.Items = new List<Cellar> { cellar };
+                return cellarModel;
+            }
+            catch (Exception ex)
+            {
+                return new ItemResultModel<Cellar>
+                {
+                    ValidationErrors = new List<ValidationResult>
+                    {
+                        new ValidationResult(ex.Message)
+                    }
+                };
+            }
         }
     }
 }

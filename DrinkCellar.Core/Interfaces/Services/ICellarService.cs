@@ -7,6 +7,6 @@ namespace DrinkCellar.Core.Interfaces.Services
     {
         Task<ItemResultModel<Cellar>> AddAsync(string name, int maxCapacity, bool cooled);
 
-        Task<ItemResultModel<Cellar>> UpdateAsync(Guid id, string name, int maxCapacity, bool cooled, List<Drink> drinks);
+        Task<ItemResultModel<Cellar>> UpdateAsync(Guid id, string name, int maxCapacity, bool cooled);
     }
 }
