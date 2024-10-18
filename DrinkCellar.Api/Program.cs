@@ -1,4 +1,8 @@
+using DrinkCellar.Core.Interfaces.Repositories;
+using DrinkCellar.Core.Interfaces.Services;
+using DrinkCellar.Core.Services;
 using DrinkCellar.Infrastructure.Data;
+using DrinkCellar.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -14,6 +18,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<ICellarRepository, CellarRepository>();
+
+builder.Services.AddScoped<ICellarService, CellarService>();
 
 var app = builder.Build();
 

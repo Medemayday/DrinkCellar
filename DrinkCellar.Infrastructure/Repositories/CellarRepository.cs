@@ -6,7 +6,8 @@ using Microsoft.Extensions.Logging;
 
 namespace DrinkCellar.Infrastructure.Repositories
 {
-    public class CellarRepository(DrinkCellarDbContext drinkCellarDbContext, ILogger<Cellar> logger, DbSet<Cellar> table) : BaseRepository<Cellar>(drinkCellarDbContext, logger, table), ICellarRepository
+    public class CellarRepository(DrinkCellarDbContext drinkCellarDbContext, ILogger<Cellar> logger) : BaseRepository<Cellar>(drinkCellarDbContext, logger), ICellarRepository
     {
+
     }
 }

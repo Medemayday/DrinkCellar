@@ -12,14 +12,14 @@ namespace DrinkCellar.Core.Services
         {
             try
             {
-                var cellars = await _cellarRepository.GetAllAsync();
+                var cellars = _cellarRepository.GetAllAsync();
                 if (cellars.Any(x => x.Name == name))
                 {
                     return new ItemResultModel<Cellar>
                     {
                         ValidationErrors = new List<ValidationResult>
                         {
-                       new ValidationResult("You already have a cellar with that name. The new cellar must have a unique name")
+                            new ValidationResult("You already have a cellar with that name. The new cellar must have a unique name")
                         }
                     };
                 }
@@ -38,7 +38,7 @@ namespace DrinkCellar.Core.Services
                     {
                         ValidationErrors = new List<ValidationResult>
                         {
-                       new ValidationResult("Something went wrong in the system")
+                            new ValidationResult("Something went wrong in the system")
                         }
                     };
                 }
@@ -49,7 +49,7 @@ namespace DrinkCellar.Core.Services
                 {
                     ValidationErrors = new List<ValidationResult>
                         {
-                       new ValidationResult(ex.Message)
+                            new ValidationResult(ex.Message)
                         }
                 };
             }
@@ -115,7 +115,7 @@ namespace DrinkCellar.Core.Services
 
             try
             {
-                var cellars = await _cellarRepository.GetAllAsync();
+                var cellars = _cellarRepository.GetAllAsync();
                 if (!cellars.Any())
                 {
                     cellarResult.ValidationErrors = new List<ValidationResult>
@@ -212,7 +212,7 @@ namespace DrinkCellar.Core.Services
             {
                 var cellarModel = new ItemResultModel<Cellar>();
                 var cellar = await _cellarRepository.GetByIdAsync(id);
-                var cellars = await _cellarRepository.GetAllAsync();
+                var cellars = _cellarRepository.GetAllAsync();
                 if (cellar == null)
                 {
                     cellarModel.IsSucces = false;

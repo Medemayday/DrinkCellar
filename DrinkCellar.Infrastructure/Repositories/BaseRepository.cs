@@ -6,11 +6,19 @@ using Microsoft.Extensions.Logging;
 
 namespace DrinkCellar.Infrastructure.Repositories
 {
-    public abstract class BaseRepository<T>(DrinkCellarDbContext drinkCellarDbContext, ILogger<T> logger, DbSet<T> table) : IRepository<T> where T : BaseEntity
+    public abstract class BaseRepository<T>: IRepository<T> where T : BaseEntity
     {
-        protected readonly DrinkCellarDbContext _drinkCellarDbContext = drinkCellarDbContext;
-        protected ILogger<T> _logger = logger;
-        protected DbSet<T> _table = table;
+        protected readonly DrinkCellarDbContext _drinkCellarDbContext;
+        protected ILogger<T> _logger;
+        protected DbSet<T> _table;
+
+        protected BaseRepository(DrinkCellarDbContext drinkCellarDbContext, ILogger<T> logger)
+        {
+            _drinkCellarDbContext = drinkCellarDbContext;
+            _logger = logger;
+            _table = _drinkCellarDbContext.Set<T>();
+        }
+
 
         public async Task<bool> AddAsync(T toAdd)
         {
@@ -30,9 +38,9 @@ namespace DrinkCellar.Infrastructure.Repositories
             return await Save();
         }
 
-        public virtual async Task<IEnumerable<T>> GetAllAsync()
+        public virtual IQueryable<T> GetAllAsync()
         {
-            return await _table.ToListAsync();
+            return _table.AsQueryable();
         }
 
         public virtual async Task<T> GetByIdAsync(Guid id)
