@@ -59,9 +59,60 @@ namespace DrinkCellar.Core.Services
             };
         }
 
-        public Task<ItemResultModel<DrinkType>> DeleteAsync(Guid id)
+        public async Task<ItemResultModel<DrinkType>> DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var drinkType = await _drinkTypeRepository.GetByIdAsync(id);
+
+                if (drinkType == null)
+                {
+                    return new ItemResultModel<DrinkType>
+                    {
+                        ValidationErrors = new List<ValidationResult>
+                        {
+                            new ValidationResult("This drinktype wasn't found in the database")
+                        }
+                    };
+                }
+                if (drinkType.Drinks.Any())
+                {
+                    return new ItemResultModel<DrinkType>
+                    {
+                        ValidationErrors = new List<ValidationResult>
+                        {
+                            new ValidationResult("This drinktype still has drinks attached")
+                        }
+                    };
+                }
+
+                if (!await _drinkTypeRepository.DeleteAsync(drinkType.Id))
+                {
+                    return new ItemResultModel<DrinkType>
+                    {
+                        ValidationErrors = new List<ValidationResult>
+                        {
+                            new ValidationResult("Something went wrong in the system")
+                        }
+                    };
+                }
+
+                return new ItemResultModel<DrinkType>
+                {
+                    IsSucces = true
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ItemResultModel<DrinkType>
+                {
+                    IsSucces = true,
+                    ValidationErrors = new List<ValidationResult>
+                    {
+                        new ValidationResult(ex.Message)
+                    }
+                };
+            }
         }
 
         public Task<ItemResultModel<DrinkType>> GetAllAsync()

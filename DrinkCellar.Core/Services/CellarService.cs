@@ -102,10 +102,16 @@ namespace DrinkCellar.Core.Services
                     IsSucces = true
                 };
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                return new ItemResultModel<Cellar>
+                {
+                    IsSucces = true,
+                    ValidationErrors = new List<ValidationResult> 
+                    { 
+                        new ValidationResult(ex.Message)
+                    }
+                };
             }
         }
 
