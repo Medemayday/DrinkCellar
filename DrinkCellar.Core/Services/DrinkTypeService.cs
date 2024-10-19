@@ -115,9 +115,34 @@ namespace DrinkCellar.Core.Services
             }
         }
 
-        public Task<ItemResultModel<DrinkType>> GetAllAsync()
+        public async Task<ItemResultModel<DrinkType>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var drinkTypeResult = new ItemResultModel<DrinkType>();
+
+            try
+            {
+                var drinkTypes = _drinkTypeRepository.GetAllAsync();
+                if (!drinkTypes.Any())
+                {
+                    drinkTypeResult.ValidationErrors = new List<ValidationResult>
+                    {
+                        new ValidationResult ("No drinkTypes are known")
+                    };
+                }
+                drinkTypeResult.Items = drinkTypes;
+                drinkTypeResult.IsSucces = true;
+                return drinkTypeResult;
+            }
+            catch (Exception ex)
+            {
+                return new ItemResultModel<DrinkType>
+                {
+                    ValidationErrors = new List<ValidationResult>
+                    {
+                        new ValidationResult(ex.Message)
+                    }
+                };
+            }
         }
 
         public Task<ItemResultModel<DrinkType>> GetByIdAsync(Guid id)
