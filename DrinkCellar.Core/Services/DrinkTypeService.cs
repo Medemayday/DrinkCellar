@@ -145,19 +145,127 @@ namespace DrinkCellar.Core.Services
             }
         }
 
-        public Task<ItemResultModel<DrinkType>> GetByIdAsync(Guid id)
+        public async Task<ItemResultModel<DrinkType>> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var drinkTypeModel = new ItemResultModel<DrinkType>();
+                var drinkType = await _drinkTypeRepository.GetByIdAsync(id);
+
+                if (drinkType == null)
+                {
+                    drinkTypeModel.ValidationErrors = new List<ValidationResult>
+                    {
+                        new ValidationResult("This drinktype was not found in the database")
+                    };
+
+                    return drinkTypeModel;
+                }
+
+                drinkTypeModel.IsSucces = true;
+                drinkTypeModel.Items = new List<DrinkType> { drinkType };
+                return drinkTypeModel;
+            }
+            catch (Exception ex)
+            {
+                return new ItemResultModel<DrinkType>
+                {
+                    ValidationErrors = new List<ValidationResult>
+                    {
+                        new ValidationResult(ex.Message)
+                    }
+                };
+            }
         }
 
-        public Task<ItemResultModel<DrinkType>> SearchByNameAsync(string name)
+        public async Task<ItemResultModel<DrinkType>> SearchByNameAsync(string name)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var drinkTypeModel = new ItemResultModel<DrinkType>();
+                var drinkType = await _drinkTypeRepository.SearchByNameAsync(name);
+
+                if (drinkType == null)
+                {
+                    drinkTypeModel.IsSucces = false;
+                    drinkTypeModel.ValidationErrors = new List<ValidationResult>
+                    {
+                        new ValidationResult("This drinktype was not found in the database")
+                    };
+                    return drinkTypeModel;
+                }
+
+                drinkTypeModel.IsSucces = true;
+                drinkTypeModel.Items = new List<DrinkType> { drinkType };
+                return drinkTypeModel;
+            }
+            catch (Exception ex)
+            {
+                return new ItemResultModel<DrinkType>
+                {
+                    ValidationErrors = new List<ValidationResult>
+                    {
+                        new ValidationResult(ex.Message)
+                    }
+                };
+            }
         }
 
-        public Task<ItemResultModel<DrinkType>> UpdateAsync(Guid id, string name, List<Drink> drinks)
+        public async Task<ItemResultModel<DrinkType>> UpdateAsync(Guid id, string name)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var drinkTypeModel = new ItemResultModel<DrinkType>();
+                var drinkType = await _drinkTypeRepository.GetByIdAsync(id);
+                var drinkTypes = _drinkTypeRepository.GetAllAsync();
+                if (drinkType == null)
+                {
+                    drinkTypeModel.IsSucces = false;
+                    drinkTypeModel.ValidationErrors = new List<ValidationResult>
+                    {
+                        new ValidationResult("This drinktype was not found in the database")
+                    };
+                    return drinkTypeModel;
+                }
+
+                if (drinkTypes.Any(x => x.Name == name))
+                {
+                    return new ItemResultModel<DrinkType>
+                    {
+                        ValidationErrors = new List<ValidationResult>
+                        {
+                       new ValidationResult("You already have a drinktype with that name. The new name must be unique")
+                        }
+                    };
+                }
+
+                drinkType.Name = name;
+
+                if (!await _drinkTypeRepository.UpdateAsync(drinkType))
+                {
+                    return new ItemResultModel<DrinkType>
+                    {
+                        ValidationErrors = new List<ValidationResult>
+                        {
+                            new ValidationResult("Something went wrong in the system")
+                        }
+                    };
+                }
+
+                drinkTypeModel.IsSucces = true;
+                drinkTypeModel.Items = new List<DrinkType> { drinkType };
+                return drinkTypeModel;
+            }
+            catch (Exception ex)
+            {
+                return new ItemResultModel<DrinkType>
+                {
+                    ValidationErrors = new List<ValidationResult>
+                    {
+                        new ValidationResult(ex.Message)
+                    }
+                };
+            }
         }
     }
 }

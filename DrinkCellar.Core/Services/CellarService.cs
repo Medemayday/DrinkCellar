@@ -147,7 +147,6 @@ namespace DrinkCellar.Core.Services
 
         public async Task<ItemResultModel<Cellar>> GetByIdAsync(Guid id)
         {
-
             try
             {
                 var cellarModel = new ItemResultModel<Cellar>();

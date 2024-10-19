@@ -7,6 +7,6 @@ namespace DrinkCellar.Core.Interfaces.Services
     {
         Task<ItemResultModel<DrinkType>> AddAsync(string name);
 
-        Task<ItemResultModel<DrinkType>> UpdateAsync(Guid id, string name, List<Drink> drinks);
+        Task<ItemResultModel<DrinkType>> UpdateAsync(Guid id, string name);
     }
 }
