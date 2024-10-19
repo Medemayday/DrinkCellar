@@ -19,9 +19,7 @@ namespace DrinkCellar.Api.Controllers
             if (!result.IsSucces)
             {
                 return BadRequest(result.ValidationErrors);
-
             }
-
             return Ok(result.Items.ToResponseDTOS());
         }
 
@@ -33,7 +31,6 @@ namespace DrinkCellar.Api.Controllers
             {
                 return BadRequest(result.ValidationErrors);
             }
-
             return Ok(result.Items.FirstOrDefault().ToResponseDTO());
         }
 
@@ -47,7 +44,36 @@ namespace DrinkCellar.Api.Controllers
             {
                 return BadRequest(result.ValidationErrors);
             }
+            return Ok();
+        }
 
+        [HttpPut]
+        public async Task<IActionResult> Update([FromForm] CellarUpdateRequestDTO cellarUpdateRequestDTO)
+        {
+            if (cellarUpdateRequestDTO.Id == Guid.Empty)
+            {
+                ModelState.AddModelError("cellarId", "No cellar selected");
+                return BadRequest(ModelState.Values);
+            }
+            
+            var result = await _cellarService.UpdateAsync
+                (cellarUpdateRequestDTO.Id, cellarUpdateRequestDTO.Name, cellarUpdateRequestDTO.MaxCapacity, cellarUpdateRequestDTO.Cooled);
+
+            if (!result.IsSucces)
+            {
+                return BadRequest(result.ValidationErrors);
+            }
+            return Ok();
+        }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var result = await _cellarService.DeleteAsync(id);
+            if (!result.IsSucces)
+            {
+                return BadRequest(result.ValidationErrors);
+            }
             return Ok();
         }
     }
