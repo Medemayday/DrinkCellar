@@ -2,6 +2,7 @@
 using DrinkCellar.Core.Interfaces.Repositories;
 using DrinkCellar.Core.Interfaces.Services;
 using DrinkCellar.Core.Services.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace DrinkCellar.Core.Services
 {
@@ -9,9 +10,53 @@ namespace DrinkCellar.Core.Services
     {
         private readonly IDrinkTypeRepository _drinkTypeRepository = drinkTypeRepository;
 
-        public Task<ItemResultModel<DrinkType>> AddAsync(string name)
+        public async Task<ItemResultModel<DrinkType>> AddAsync(string name)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var drinkTypes = _drinkTypeRepository.GetAllAsync();
+                if (drinkTypes.Any(x => x.Name == name))
+                {
+                    return new ItemResultModel<DrinkType>
+                    {
+                        ValidationErrors = new List<ValidationResult>
+                        {
+                            new ValidationResult("You already have a drinktype with that name. The new type must have a unique name")
+                        }
+                    };
+                }
+
+                var drinkType = new DrinkType
+                {
+                    Name = name,
+                    Id = new Guid()
+                };
+
+                if (!await _drinkTypeRepository.AddAsync(drinkType))
+                {
+                    return new ItemResultModel<DrinkType>
+                    {
+                        ValidationErrors = new List<ValidationResult>
+                        {
+                            new ValidationResult("Something went wrong in the system")
+                        }
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ItemResultModel<DrinkType>
+                {
+                    ValidationErrors = new List<ValidationResult>
+                        {
+                            new ValidationResult(ex.Message)
+                        }
+                };
+            }
+            return new ItemResultModel<DrinkType>
+            {
+                IsSucces = true
+            };
         }
 
         public Task<ItemResultModel<DrinkType>> DeleteAsync(Guid id)
