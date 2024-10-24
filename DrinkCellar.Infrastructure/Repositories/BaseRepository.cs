@@ -49,10 +49,10 @@ namespace DrinkCellar.Infrastructure.Repositories
                 .FirstOrDefaultAsync(b => b.Id == id);
         }
 
-        public virtual async Task<T> SearchByNameAsync(string name)
+        public virtual async Task<List<T>> SearchByNameAsync(string name)
         {
             return await _table
-                .FirstOrDefaultAsync(b => b.Name == name);
+                .Where(b => b.Name == name).ToListAsync();
         }
                 
         private async Task<bool> Save()

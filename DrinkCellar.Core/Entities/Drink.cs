@@ -6,6 +6,9 @@
         public DrinkType DrinkType { get; set; }
         public Guid CellarId { get; set; }
         public Cellar Cellar { get; set; } 
-        public string Note { get; set; }
+        public string Note { get; set; }      
+        public int Amount { get; set; }
+
+        public DateTime? ExperiationDate { get; set; }
     }
 }

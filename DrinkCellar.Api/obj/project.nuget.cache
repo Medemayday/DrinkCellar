@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YZcYxdoE1OgdRUw/bmrOvDJtbifDjoY5NhBFMzs0S8y2OXs2TwkZwg0wBP+zikKKKT3/fLoS9euabpeCILm+nA==",
+  "dgSpecHash": "JUXOgjpnMZg=",
   "success": true,
-  "projectFilePath": "C:\\Prog\\Persoonlijk\\DrinkCellar\\DrinkCellar.Api\\DrinkCellar.Api.csproj",
+  "projectFilePath": "C:\\Prog\\Persoonlijk\\DrinkCellar\\drinkcellar.api\\DrinkCellar.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\matth\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\matth\\.nuget\\packages\\azure.identity\\1.11.3\\azure.identity.1.11.3.nupkg.sha512",

@@ -185,7 +185,7 @@ namespace DrinkCellar.Core.Services
                 var cellarModel = new ItemResultModel<Cellar>();
                 var cellar = await _cellarRepository.SearchByNameAsync(name);
 
-                if (cellar == null)
+                if (!cellar.Any())
                 {
                     cellarModel.IsSucces = false;
                     cellarModel.ValidationErrors = new List<ValidationResult>
@@ -196,7 +196,7 @@ namespace DrinkCellar.Core.Services
                 }
 
                 cellarModel.IsSucces = true;
-                cellarModel.Items = new List<Cellar> { cellar };
+                cellarModel.Items = cellar;
                 return cellarModel;
             }
             catch (Exception ex)

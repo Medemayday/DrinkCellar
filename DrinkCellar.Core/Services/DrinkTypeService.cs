@@ -183,9 +183,9 @@ namespace DrinkCellar.Core.Services
             try
             {
                 var drinkTypeModel = new ItemResultModel<DrinkType>();
-                var drinkType = await _drinkTypeRepository.SearchByNameAsync(name);
+                var drinkTypes = await _drinkTypeRepository.SearchByNameAsync(name);
 
-                if (drinkType == null)
+                if (!drinkTypes.Any())
                 {
                     drinkTypeModel.IsSucces = false;
                     drinkTypeModel.ValidationErrors = new List<ValidationResult>
@@ -196,7 +196,7 @@ namespace DrinkCellar.Core.Services
                 }
 
                 drinkTypeModel.IsSucces = true;
-                drinkTypeModel.Items = new List<DrinkType> { drinkType };
+                drinkTypeModel.Items = drinkTypes;
                 return drinkTypeModel;
             }
             catch (Exception ex)

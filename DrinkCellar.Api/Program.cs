@@ -20,8 +20,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<ICellarRepository, CellarRepository>();
+builder.Services.AddScoped<IDrinkTypeRepository, DrinkTypeRepository>();
+builder.Services.AddScoped<IDrinkRepository, DrinkRepository>();
 
 builder.Services.AddScoped<ICellarService, CellarService>();
+builder.Services.AddScoped<IDrinkTypeService, DrinkTypeService>();
+builder.Services.AddScoped<IDrinkService, DrinkService>();
 
 var app = builder.Build();
 

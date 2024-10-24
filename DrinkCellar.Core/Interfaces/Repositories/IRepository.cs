@@ -9,6 +9,6 @@ namespace DrinkCellar.Core.Interfaces.Repositories
         Task<bool> AddAsync(T toAdd);
         Task<bool> UpdateAsync(T toUpdate);
         Task<bool> DeleteAsync(Guid id);
-        Task<T> SearchByNameAsync(string name);
+        Task<List<T>> SearchByNameAsync(string name);
     }
 }
